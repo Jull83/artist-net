@@ -13,7 +13,7 @@ function archivo(evt) {
            reader.onload = (function(theFile) {
                return function(e) {
                // Creamos la imagen.
-                      document.getElementById("publish-image").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                      document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
                };
            })(f);
  
@@ -28,15 +28,31 @@ document.getElementById('files').addEventListener('change', archivo, false);
 // Crear evento
 // primero guarda el val() de tu input en una variable
 // luego creas todos los elementos que quieres que vayan en tu post
-// despues les pones atributos a esos elementos (en tu caso al <p> que creaste le pones un
+// despues les pones atributos a esos elementos (en tu caso 0al <p> que creaste le pones un
 // text( y aqui dentro escribes el nombre de la variable del value del input)
 // despues colocas a cada hijo con su padre: <tu seccion de html>
 // <div de tu post>
 // <p>
 // con append
 
-var $text = $("#text-input");
+
 
 $("#add-text").click(paintText);
+var $textInput = $("#text-input");
 
-function
+function paintText (text) {
+  var $textInput = $("#text-input");
+  var $text = $textInput.val();
+console.log($text);
+
+  var $containerText = $("<div />");
+  var $containerP = $("<p />");
+
+  //$containerText.text(text);
+
+  $containerText.append($containerP);
+  $containerP.append($text);
+
+  $("#publish").prepend($containerText);
+
+}
