@@ -43,3 +43,15 @@
   width: 10vw;
   height: 10vh;
 }
+
+.thumb {
+  width: 100%;
+  margin: 10px 5px 0 0;
+}
+
+/* Modal 3, agregar contactos */
+
+#contact-input, label {
+  display: block;
+  margin-top: 1em;
+}

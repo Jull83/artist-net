@@ -1,3 +1,4 @@
+//Función para cargar archivos.
 function archivo(evt) {
       var files = evt.target.files; // FileList object
        
@@ -13,12 +14,13 @@ function archivo(evt) {
            reader.onload = (function(theFile) {
                return function(e) {
                // Creamos la imagen.
-                      document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+           document.getElementById("publish").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
                };
            })(f);
  
            reader.readAsDataURL(f);
        }
+
 }
              
 document.getElementById('files').addEventListener('change', archivo, false);
@@ -36,12 +38,28 @@ document.getElementById('files').addEventListener('change', archivo, false);
 // con append
 
 
+var $textInput = $("#text-input");
+
+//Funcion para habilitar el bóton de pos texto
+
+$("#text-input").keyup(habilitateButton);
+
+function habilitateButton () {
+	var $containerAddText = $("#add-text");
+
+	if($(this).val().trim().length > 0) {
+		$containerAddText.removeAttr("disabled");
+	} else {
+		$containerAddText.attr("disabled", true);
+	}
+}
+
+//Función para pintar el input de texto en el newsfeed
 
 $("#add-text").click(paintText);
 var $textInput = $("#text-input");
 
 function paintText (text) {
-  var $textInput = $("#text-input");
   var $text = $textInput.val();
 console.log($text);
 
@@ -54,5 +72,58 @@ console.log($text);
   $containerP.append($text);
 
   $("#publish").prepend($containerText);
-
 }
+
+//Función para agregar contactos.
+$("#add-contact").click(paintContactName);
+var $contactInput = $("#contact-input");
+
+function paintContactName(contact) {
+  var $contact = $contactInput.val();
+  console.log($contact);
+
+  var $contactContainer = $("<div />");
+  var $imageContainer = $("<img />");
+  var $contactP = $("<p />");
+
+  $contactContainer.append($contactP);
+  $contactContainer.append($imageContainer);
+  $contactP.append($contact);
+
+
+  $("#publish-contact").prepend($contactContainer);
+}
+
+
+//Función para pintar las imágenes
+
+$('add-image').click(paintImage);
+  var $imageInput = $(".image-input");
+
+function paintImage (image) {
+  var $imageInput = $(".thumb");
+  var $image = $imageInput.val();
+
+  console.log($image);
+  var $containerImage = $("<div />");
+  $containerImage.append($image);
+
+  $("publish").prepend($containerImage);
+}
+
+
+
+
+
+//Funcion para habilitar boton agregar contactos
+// $("#contact-input").keyup(habilitateButton);
+//
+// function habilitateButton () {
+// 	var $containerAddText = $("#add-text");
+//
+// 	if($(this).val().trim().length > 0) {
+// 		$containerAddText.removeAttr("disabled");
+// 	} else {
+// 		$containerAddText.attr("disabled", true);
+// 	}
+// }
