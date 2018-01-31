@@ -83,15 +83,13 @@ function paintContactName(contact) {
   console.log($contact);
 
   var $contactContainer = $("<div />");
-  var $imageContainer = $("<img />");
   var $contactP = $("<p />");
 
   $contactContainer.append($contactP);
-  $contactContainer.append($imageContainer);
   $contactP.append($contact);
 
-
   $("#publish-contact").prepend($contactContainer);
+  
 }
 
 
